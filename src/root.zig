@@ -8,10 +8,14 @@
 const std = @import("std");
 const testing = std.testing;
 
-pub export fn add(a: i32, b: i32) i32 {
-    return a + b;
+pub const Config = @import("config.zig");
+
+pub fn run(comptime c: Config) void {
+    comptime c.validate();
+
+    std.debug.print("{}\n", .{c});
 }
 
-test "basic add functionality" {
-    try testing.expect(add(3, 7) == 10);
-}
+// test "basic add functionality" {
+//     try testing.expect(add(3, 7) == 10);
+// }
